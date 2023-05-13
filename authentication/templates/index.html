@@ -1,0 +1,51 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'authentication/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'authentication/external-css/style.css' %}">
+    <title>welcome to our homepage</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto">
+                <h1 class="text-center text-capitalize mb-5">welcome to our page</h1>
+
+                {%  if request.user.is_authenticated  %}
+                 <div class="d-flex justify-content-between">   
+                <p class="h3 text-primary">you are now loggedin </p>
+                <button type="submit" class="btn btn-danger btn-lg text-uppercase "><a href="{% url 'signout' %}" class="text-white">signout</a></button>
+                  </div>                   
+                <div>
+                   <table class="mb-5">
+                    <tr>
+                        <td class="h1">username:</td> 
+                        <td class="h3 text-primary">{{request.user.username}}</td>
+                    </tr>
+                   </table>
+                   
+                </div>
+                {% else %}
+                <p class="h3 text-danger">you are now loggedout </p>   
+            
+                {% endif %}
+                
+                <button type="submit" class="btn btn-primary  btn-lg  text-uppercase"><a href="{% url 'signup' %}" class="text-white">signup</a></button>
+                <button type="submit" class="btn btn-success btn-lg  text-uppercase"><a href="{% url 'signin' %}" class="text-white">signin</a></button>
+            
+
+            </div>
+        </div>
+    </div>
+    
+
+   <script src="{% static 'authentication/js/bootstrap.min.js'%}"></script> 
+</body>
+</html>
